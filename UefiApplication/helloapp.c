@@ -36,18 +36,23 @@ UefiUnload (
 
 EFI_STATUS
 EFIAPI
-UefiMain (
-    IN EFI_HANDLE ImageHandle,
-    IN EFI_SYSTEM_TABLE* SystemTable
-    )
+UefiMain (IN EFI_HANDLE image_handle, IN EFI_SYSTEM_TABLE* system_table)
 {
     EFI_STATUS efiStatus;
 
+	// Initialize lib
+	efiStatus = ShellInitialize();
+	if (EFI_ERROR(efiStatus))
+	{
+		Print(L"Failed to initialize shell: %lx\n", efiStatus);
+		return efiStatus;
+	}
+
+	// Clear screen
+	system_table->ConOut->ClearScreen(system_table->ConOut);
+
     // Print Hello World
     Print(L"Hello World!");
-
-    // Initialize the shell library
-    efiStatus = ShellInitialize();
 
     return efiStatus;
 }
