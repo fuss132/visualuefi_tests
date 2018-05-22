@@ -35,9 +35,9 @@ UefiUnload (
 
 EFI_STATUS
 EFIAPI
-UefiMain (IN EFI_HANDLE image_handle, IN EFI_SYSTEM_TABLE* system_table)
+UefiMain(IN EFI_HANDLE image_handle, IN EFI_SYSTEM_TABLE* system_table)
 {
-    EFI_STATUS efiStatus;
+	EFI_STATUS efiStatus;
 	EFI_INPUT_KEY key;
 
 	// Initialize lib
@@ -56,7 +56,7 @@ UefiMain (IN EFI_HANDLE image_handle, IN EFI_SYSTEM_TABLE* system_table)
 		return efiStatus;
 	}
 
-    // Print Hello World
+	// Print Hello World
 	Print(L"Hello World!\n\n");
 
 	while (1) {
@@ -67,7 +67,7 @@ UefiMain (IN EFI_HANDLE image_handle, IN EFI_SYSTEM_TABLE* system_table)
 		if (key.ScanCode == SCAN_UP) {
 			Print(L"Pressed up arrow key\n");
 		}
-		else if(key.ScanCode == SCAN_DOWN){
+		else if (key.ScanCode == SCAN_DOWN) {
 			Print(L"Pressed down arrow key\n");
 		}
 	}
