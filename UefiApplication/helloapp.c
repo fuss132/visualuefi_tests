@@ -38,6 +38,7 @@ EFIAPI
 UefiMain (IN EFI_HANDLE image_handle, IN EFI_SYSTEM_TABLE* system_table)
 {
     EFI_STATUS efiStatus;
+	EFI_INPUT_KEY key;
 
 	// Initialize lib
 	efiStatus = ShellInitialize();
@@ -55,10 +56,21 @@ UefiMain (IN EFI_HANDLE image_handle, IN EFI_SYSTEM_TABLE* system_table)
 		return efiStatus;
 	}
 
-	
-
     // Print Hello World
-	Print(L"Hello World!");
+	Print(L"Hello World!\n\n");
+
+	while (1) {
+		// -- CHECK FOR KEYBOARD EVENTS --
+		system_table->BootServices->CheckEvent(system_table->ConIn->WaitForKey);
+		system_table->ConIn->ReadKeyStroke(system_table->ConIn, &key);
+
+		if (key.ScanCode == SCAN_UP) {
+			Print(L"Pressed up arrow key\n");
+		}
+		else if(key.ScanCode == SCAN_DOWN){
+			Print(L"Pressed down arrow key\n");
+		}
+	}
 
 	return EFI_SUCCESS;
 }
