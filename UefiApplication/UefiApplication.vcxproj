@@ -21,6 +21,9 @@
       <AdditionalDependencies>UefiApplicationEntryPoint.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>EFI Application</SubSystem>
     </Link>
+    <ClCompile>
+      <TreatWarningAsError Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</TreatWarningAsError>
+    </ClCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="helloapp.c" />
